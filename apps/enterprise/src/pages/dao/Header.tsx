@@ -44,15 +44,9 @@ export const Header = forwardRef((props: HeaderProps, ref: Ref<HTMLDivElement>) 
     <Container className={classNames(className, styles.root)} direction="column">
       <VStack gap={16}>
         <Container className={styles.container}>
-          <InternalLink to={Path.Daos}>
-            <Text className={styles.back} variant="link">
-              Back
-            </Text>
-          </InternalLink>
           <div className={styles.logo}>
             <DAOLogo size="m" logo={getDaoLogo(dao)} />
           </div>
-          <FavouriteToggle className={styles.favourite} dao={toDao(dao)} />
           <Text className={styles.name} variant="heading2">
             {dao.metadata.name}
           </Text>

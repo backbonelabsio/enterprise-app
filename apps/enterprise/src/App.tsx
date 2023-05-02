@@ -40,7 +40,7 @@ const queryClient = new QueryClient();
 const AppRoutes = () => {
   return (
     <Routes>
-      <Route index={true} element={<LandingPage />} />
+      <Route index={true} element={<DashboardPage />} />
       <Route path="*" element={<AppBetaRoutes />} />
     </Routes>
   );

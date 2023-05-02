@@ -21,35 +21,33 @@ export const DAOPage = () => {
   const ref = useRef<HTMLDivElement>(null);
 
   return (
-    <Navigation>
-      <LoadingPage isLoading={isLoading}>
-        {dao && (
-          <CurrentDaoProvider value={dao}>
-            <ResponsiveView
-              small={() => (
-                <VStack gap={24}>
-                  <MobileDaoHeader />
+    <LoadingPage isLoading={isLoading}>
+      {dao && (
+        <CurrentDaoProvider value={dao}>
+          <ResponsiveView
+            small={() => (
+              <VStack gap={24}>
+                <MobileDaoHeader />
+                <Outlet />
+              </VStack>
+            )}
+            normal={() => (
+              <ScrollableContainer
+                stickyRef={ref}
+                header={(visible) => (
+                  <StickyHeader visible={visible}>
+                    <Header compact={true} />
+                  </StickyHeader>
+                )}
+              >
+                <PageLayout header={<Header ref={ref} />}>
                   <Outlet />
-                </VStack>
-              )}
-              normal={() => (
-                <ScrollableContainer
-                  stickyRef={ref}
-                  header={(visible) => (
-                    <StickyHeader visible={visible}>
-                      <Header compact={true} />
-                    </StickyHeader>
-                  )}
-                >
-                  <PageLayout header={<Header ref={ref} />}>
-                    <Outlet />
-                  </PageLayout>
-                </ScrollableContainer>
-              )}
-            />
-          </CurrentDaoProvider>
-        )}
-      </LoadingPage>
-    </Navigation>
+                </PageLayout>
+              </ScrollableContainer>
+            )}
+          />
+        </CurrentDaoProvider>
+      )}
+    </LoadingPage>
   );
 };

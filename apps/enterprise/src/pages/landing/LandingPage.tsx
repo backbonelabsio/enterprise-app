@@ -34,8 +34,6 @@ export const LandingPage = () => {
       <LandingTopbar ref={headerRef} />
       <AnimatedPage className={styles.container}>
         <PrimarySlice />
-        <FeaturesSlice />
-        <LandingFooter />
       </AnimatedPage>
     </ScrollableContainer>
   );
