@@ -50,125 +50,123 @@ const AppBetaRoutes = () => {
   useTransactionSnackbars();
 
   return (
-    <BetaGuard>
-      <Routes>
-        <Route path={Path.Dashboard} element={<DashboardPage />} />
-        <Route path={Path.Daos} element={<DAOsPage />} />
-        <Route path={Path.Settings} element={<SettingsPage />} />
+    <Routes>
+      <Route path={Path.Dashboard} element={<DashboardPage />} />
+      <Route path={Path.Daos} element={<DAOsPage />} />
+      <Route path={Path.Settings} element={<SettingsPage />} />
+      <Route
+        path="/dao/:address"
+        element={
+          <InitizalizedWalletOnly>
+            <DaoErrorBoundary>
+              <DAOPage />
+            </DaoErrorBoundary>
+          </InitizalizedWalletOnly>
+        }
+      >
         <Route
-          path="/dao/:address"
+          index={true}
           element={
             <InitizalizedWalletOnly>
               <DaoErrorBoundary>
-                <DAOPage />
-              </DaoErrorBoundary>
-            </InitizalizedWalletOnly>
-          }
-        >
-          <Route
-            index={true}
-            element={
-              <InitizalizedWalletOnly>
-                <DaoErrorBoundary>
-                  <DAOOverviewPage />
-                </DaoErrorBoundary>
-              </InitizalizedWalletOnly>
-            }
-          />
-          <Route
-            path="treasury"
-            element={
-              <InitizalizedWalletOnly>
-                <DaoErrorBoundary>
-                  <DAOTreasuryPage />
-                </DaoErrorBoundary>
-              </InitizalizedWalletOnly>
-            }
-          />
-          <Route
-            path="proposals"
-            element={
-              <InitizalizedWalletOnly>
-                <DaoErrorBoundary>
-                  <DAOProposalsPage />
-                </DaoErrorBoundary>
-              </InitizalizedWalletOnly>
-            }
-          />
-          <Route
-            path="distribute"
-            element={
-              <InitizalizedWalletOnly>
-                <DaoErrorBoundary>
-                  <DistributePage />
-                </DaoErrorBoundary>
-              </InitizalizedWalletOnly>
-            }
-          />
-          <Route
-            path="staking"
-            element={
-              <InitizalizedWalletOnly>
-                <DaoErrorBoundary>
-                  <DAOStakingPage />
-                </DaoErrorBoundary>
-              </InitizalizedWalletOnly>
-            }
-          />
-          <Route
-            path="members"
-            element={
-              <InitizalizedWalletOnly>
-                <DaoErrorBoundary>
-                  <DAOMembersPage />
-                </DaoErrorBoundary>
-              </InitizalizedWalletOnly>
-            }
-          />
-        </Route>
-        <Route
-          path="/dao/:address/proposals/create"
-          element={
-            <InitizalizedWalletOnly>
-              <DaoErrorBoundary>
-                <ConditionalWallet connected={() => <SelectProposalTypePage />} />
+                <DAOOverviewPage />
               </DaoErrorBoundary>
             </InitizalizedWalletOnly>
           }
         />
         <Route
-          path="/dao/:address/proposals/create/:type"
+          path="treasury"
           element={
             <InitizalizedWalletOnly>
               <DaoErrorBoundary>
-                <CreateProposalPage />
+                <DAOTreasuryPage />
               </DaoErrorBoundary>
             </InitizalizedWalletOnly>
           }
         />
         <Route
-          path="/dao/create"
+          path="proposals"
           element={
             <InitizalizedWalletOnly>
               <DaoErrorBoundary>
-                <CreateDAOPage />
+                <DAOProposalsPage />
               </DaoErrorBoundary>
             </InitizalizedWalletOnly>
           }
         />
         <Route
-          path="/dao/:address/proposals/:id"
+          path="distribute"
           element={
             <InitizalizedWalletOnly>
               <DaoErrorBoundary>
-                <ProposalPage />
+                <DistributePage />
               </DaoErrorBoundary>
             </InitizalizedWalletOnly>
           }
         />
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
-    </BetaGuard>
+        <Route
+          path="staking"
+          element={
+            <InitizalizedWalletOnly>
+              <DaoErrorBoundary>
+                <DAOStakingPage />
+              </DaoErrorBoundary>
+            </InitizalizedWalletOnly>
+          }
+        />
+        <Route
+          path="members"
+          element={
+            <InitizalizedWalletOnly>
+              <DaoErrorBoundary>
+                <DAOMembersPage />
+              </DaoErrorBoundary>
+            </InitizalizedWalletOnly>
+          }
+        />
+      </Route>
+      <Route
+        path="/dao/:address/proposals/create"
+        element={
+          <InitizalizedWalletOnly>
+            <DaoErrorBoundary>
+              <ConditionalWallet connected={() => <SelectProposalTypePage />} />
+            </DaoErrorBoundary>
+          </InitizalizedWalletOnly>
+        }
+      />
+      <Route
+        path="/dao/:address/proposals/create/:type"
+        element={
+          <InitizalizedWalletOnly>
+            <DaoErrorBoundary>
+              <CreateProposalPage />
+            </DaoErrorBoundary>
+          </InitizalizedWalletOnly>
+        }
+      />
+      <Route
+        path="/dao/create"
+        element={
+          <InitizalizedWalletOnly>
+            <DaoErrorBoundary>
+              <CreateDAOPage />
+            </DaoErrorBoundary>
+          </InitizalizedWalletOnly>
+        }
+      />
+      <Route
+        path="/dao/:address/proposals/:id"
+        element={
+          <InitizalizedWalletOnly>
+            <DaoErrorBoundary>
+              <ProposalPage />
+            </DaoErrorBoundary>
+          </InitizalizedWalletOnly>
+        }
+      />
+      <Route path="*" element={<Navigate to="/" replace />} />
+    </Routes>
   );
 };
 
