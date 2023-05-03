@@ -4,16 +4,18 @@ import { useCurrentDao } from 'dao/components/CurrentDaoProvider';
 import { useMemo } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-const daoView = ['staking', 'members'] as const;
+const daoView = ['staking', 'distribute', 'members'] as const;
 type DaoView = typeof daoView[number];
 
 const daoViewName: Record<DaoView, string> = {
   staking: 'Staking',
+  distribute: 'Distribute',
   members: 'Members'
 };
 
 const daoViewPath: Record<DaoView, string> = {
   staking: 'staking',
+  distribute: 'Distribute',
   members: 'Members'
 };
 
